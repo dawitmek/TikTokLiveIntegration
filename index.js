@@ -8,7 +8,7 @@ const MDB_PASSWORD = process.env.DBPASSWORD;
 // Username of someone who is currently live
 let tiktokUsername = "example123";
 
-const uri = `mongodb+srv://admin:${MDB_PASSWORD}@cluster0.cyew1xh.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://admin:${MDB_PASSWORD}@cluster0.krlqmgt.mongodb.net/?retryWrites=true&w=majority`;
 const db_client = new MongoClient(uri);
 let currTime;
 
@@ -80,7 +80,7 @@ tiktok_client.connect().then(state => {
 
 tiktok_client.on('chat', (data => {
     try {
-        comment(data.uniqueId, data.profilePictureUrl, data.comment, Date.now());
+        comment(data.uniqueId, data.profilePictureUrl, data.comment, new Date(Date.now()).toLocaleString());
     } catch (error) {
         console.error('Chatting error: ', error);
     }
@@ -98,6 +98,7 @@ tiktok_client.on('streamEnd', () => {
 })
 
 tiktok_client.on('error', err => {
+    db_client.close();
     console.error('Tiktok error: ', err);
 })
 
