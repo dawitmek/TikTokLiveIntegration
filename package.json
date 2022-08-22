@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "mongodb": "^4.9.0",
+    "tiktok-live-connector": "^0.9.25"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
